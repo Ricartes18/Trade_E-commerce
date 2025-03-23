@@ -54,6 +54,6 @@
         <p style="color: green; font-weight: bold;">Tradable</p>
         <a href="">Trade</a>
     <?php endif; ?>
-    <a href="cart.php?add=<?= $row['Product_ID'];?>">Add to Cart</a>
+    <a href="cart_process.php?add=<?= $row['Product_ID'];?>">Add to Cart</a>
 </body>
 </html>
