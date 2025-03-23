@@ -2,22 +2,24 @@
 session_start();
 include 'admin/connection.php';
 
-$cart_items = [];
-$total_price = 0;
+    if (!isset($_SESSION['username'])) {
+        header('Location: login.php');
+        exit();
+    }
 
-if (!empty($_SESSION['cart'])) {
-    $placeholders = implode(',', array_fill(0, count($_SESSION['cart']), '?'));
-    $stmt = $conp->prepare("SELECT * FROM products WHERE Product_ID IN ($placeholders)");
-    $stmt->bind_param(str_repeat('i', count($_SESSION['cart'])), ...array_keys($_SESSION['cart']));
+    $stmt = $con->prepare("SELECT * FROM cart c
+                                JOIN merch_exchange.products p ON c.product_id = p.product_id 
+                                WHERE user_id = ?;");
+    $stmt->bind_param('i', $_SESSION['user_id']);
     $stmt->execute();
     $result = $stmt->get_result();
 
-    while ($row = $result->fetch_assoc()) {
-        $row['quantity'] = $_SESSION['cart'][$row['Product_ID']];
-        $cart_items[] = $row;
-        $total_price += $row['Price'] * $row['quantity'];
+    $total_price = 0;
+    if($stmt->num_rows > 0) {
+        $_SESSION['cart'] = 'empty';
+    } else {
+        $_SESSION['cart'] = 'has_items';
     }
-}
 ?>
 
 <!DOCTYPE html>
@@ -29,18 +31,20 @@ if (!empty($_SESSION['cart'])) {
 </head>
 <body>
     <h1>Cedric Bading</h1>
-    <?php if(!empty($cart_items)): ?>
+    <?php if($_SESSION['cart'] == 'has_items'): ?>
         <ul>
-            <?php foreach ($cart_items as $item): ?>
+            <?php while($row = $result->fetch_assoc()) { ?>
                 <li>
-                    <img src="products/<?= $item['Product_Image']; ?>" width="50">
-                    <?= $item['Photocard_Title']; ?> - &#8369; <?= $item['Price']; ?>
-                    <br> Quantity: <?= $item['quantity']; ?>
+                    <img src="products/<?= $row['Product_Image']; ?>" width="50">
+                    <?= $row['Photocard_Title']; ?> - &#8369; <?= $row['Price']; ?>
+                    <br> Quantity: <?= $row['quantity']; ?>
                     <a href="cart_process.php?add=<?= $item['Product_ID']; ?>">➕</a>
                     <a href="cart_process.php?minus=<?= $item['Product_ID']; ?>">➖</a>
                     <a href="cart_process.php?remove=<?= $item['Product_ID']; ?>">❌ Remove</a>
                 </li>
-            <?php endforeach; ?>
+            <?php 
+                    $total_price += $row['Price'] * $row['quantity'];
+                    } ?>
         </ul>
         <p><strong>Total: &#8369; <?= $total_price; ?></strong></p>
         <a href="checkout.php">Proceed to Checkout</a>
