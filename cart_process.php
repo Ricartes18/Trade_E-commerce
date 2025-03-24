@@ -23,27 +23,54 @@ if(isset($_POST['add_to_cart'])) {
     $con->close();
 }
 
-// if (isset($_GET['add'])) {
-//     $product_id = intval($_GET['add']);
-//     $_SESSION['cart'][$product_id] = ($_SESSION['cart'][$product_id] ?? 0) + 1;
-// }
+if (isset($_GET['add'])) {
+    $product_id = intval($_GET['add']);
+    $stmt = $con->prepare("SELECT c.product_id, c.quantity, p.quantity 
+                        FROM cart c
+                        JOIN merch_exchange.products p ON c.product_id = p.product_id
+                        WHERE c.user_id = ?");
+    $stmt->bind_param("i", $_SESSION['user_id']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $stmt->close();
 
-// if (isset($_GET['minus'])) {
-//     $product_id = intval($_GET['minus']);
+    if ($row['quantity'] < $_GET['qty']) {
+        header('Location: cart.php');
+        exit();
+    } else {
+        $stmt = $con->prepare("UPDATE cart SET quantity = quantity + 1 WHERE user_id = ? AND product_id = ?");
+        $stmt->bind_param("ii", $user_id, $product_id);
+        $stmt->execute();
+        $stmt->close();
+        header('Location: cart.php');
+        exit();
+    }
+}
 
-//     if(isset($_SESSION['cart'][$product_id])) {
-//         $_SESSION['cart'][$product_id]--;
+if (isset($_GET['minus'])) {
+    $product_id = intval($_GET['minus']);
+    $stmt = $con->prepare("UPDATE cart SET quantity = quantity - 1 WHERE user_id = ? AND product_id = ? AND quantity > 1");
+    $stmt->bind_param("ii", $user_id, $product_id);
+    $stmt->execute();
+    $stmt->close();
 
-//         if ($_SESSION['cart'][$product_id] <= 0) {
-//             unset($_SESSION['cart'][$product_id]);
-//         }
-//     }
-// }
+    // Quan = 0 remove item from cart
+    $stmt = $con->prepare("DELETE FROM cart WHERE user_id = ? AND product_id = ? AND quantity <= 0");
+    $stmt->bind_param("ii", $user_id, $product_id);
+    $stmt->execute();
+    $stmt->close();
+    header('Location: cart.php');
+    exit();
+}
 
-// if (isset($_GET['remove'])) {
-//     $product_id = intval($_GET['remove']);
-//     unset($_SESSION['cart'][$product_id]);
-//     }
+if (isset($_GET['remove'])) {
+    $product_id = intval($_GET['remove']);
+    $stmt = $con->prepare("DELETE FROM cart WHERE user_id = ? AND product_id = ?");
+    $stmt->bind_param("ii", $user_id, $product_id);
+    $stmt->execute();
+    $stmt->close();
+}
 
 
 if (isset($_GET['clear'])) {
@@ -51,10 +78,24 @@ if (isset($_GET['clear'])) {
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $stmt->close();
+}
+
+if (isset($_GET['remove'])) {
+    $product_id = intval($_GET['remove']);
+    header('Location: cart.php');
+    exit();
+    }
+
+
+if (isset($_GET['clear'])) {
+    $stmt = $con->prepare("DELETE FROM cart WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+    $stmt->close();
+    $_SESSION['cart'] = 'empty';
     header('Location: cart.php');
     exit();
 }
 
 header("Location: product.php?id=$product_id");
 exit();
-
