@@ -33,7 +33,8 @@
     // store the new recently viewed in cookie
     setcookie('recently_viewed', json_encode($recently_viewed), time() + (86400 * 7), "/"); // Expires in 7 days
 
-
+    $stmt->close();
+    $conp->close();
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +55,24 @@
         <p style="color: green; font-weight: bold;">Tradable</p>
         <a href="">Trade</a>
     <?php endif; ?>
-    <a href="cart_process.php?add=<?= $row['Product_ID'];?>">Add to Cart</a>
+    <form action="cart_process.php" method="POST">
+        <input type="hidden" name="product_id" value="<?= $row['Product_ID'];?>">
+        <input type="number" name="quantity" id="quantity_input" value=1 min=1 max=<?= $row["Quantity"]?>>
+        <button type="submit" name="add_to_cart">Add to Cart</button>
+    </form>
+    <form action="checkout.php" method="POST">
+    <input type="hidden" name="checkout_items" value="<?= $row['Product_ID'];?>">
+    <input type="hidden" name="num_ordered" id="quantity_buy" value=1>
+    <input type="hidden" name="price" value=<?= $row['Price']?>>
+        <button type="submit" name="buy_now">Buy Now</button>
+    </form>
+
 </body>
+
+<script>
+    document.getElementById('quantity_input').addEventListener('input', function () {
+        document.getElementById('quantity_buy').value = this.value;
+    });
+</script>
+
 </html>
