@@ -33,13 +33,14 @@
 }
 
 .logout-btn {
-    background: #ff69b4;
+    background-color: #ff69b4;
+    border: none;
     padding: 0;
     cursor: pointer;
 }
 
 .logout-img {
-    width: 40px; /* Adjust size as needed */
+    width: 50px; 
     height: auto;
 }
 
