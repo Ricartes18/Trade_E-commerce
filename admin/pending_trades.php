@@ -1,31 +1,22 @@
 <?php
-    session_start();
-    include 'connection.php';
+include 'connection.php';
 
-    // Redirect non-admin users
-    /*if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-        header("Location: ../index.php");
-        exit();
-    } */
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_trade'])) {
+    $tradeID = $_POST['Trade_ID'];
+    $newStatus = $_POST['Trade_Status'];
 
-    // Handle accept/reject actions
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST['trade_id'], $_POST['action'])) {
-        $trade_id = intval($_POST['trade_id']);
-        $status = ($_POST['action'] === 'accept') ? 'Accepted' : 'Declined';
-        
-        $stmt = $conp->prepare("UPDATE trade SET Trade_Status = ? WHERE Trade_ID = ?");
-        $stmt->bind_param("si", $status, $trade_id);
-        $stmt->execute();
-        $stmt->close();
+    $stmt = $conp->prepare("UPDATE trade SET Trade_Status = ? WHERE Trade_ID = ?");
+    $stmt->bind_param("si", $newStatus, $tradeID);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('Trade status updated!'); window.location='pending_trades.php';</script>";
+    } else {
+        echo "Error: " . $stmt->error;
     }
+    $stmt->close();
+}
 
-    // Fetch pending trades
-    $result = $conp->query("SELECT t.Trade_ID, t.username, p.Photocard_Title, t.Trade_Offer FROM trade t JOIN products p ON t.Product_ID = p.Product_ID WHERE t.Trade_Status = 'Pending'");
-    
-    $trades = [];
-    while ($row = $result->fetch_assoc()) {
-        $trades[] = $row;
-    }
+$result = $conp->query("SELECT Trade_ID, Trade_Name, Trade_Description, Trade_Offer, username, Trade_Status FROM trade WHERE Trade_Status = 'Pending'");
 ?>
 
 <!DOCTYPE html>
@@ -33,15 +24,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/trades_pending.css">
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
-    <title>Pending Trades</title>
+    <link rel="stylesheet" href="../css/pending_trades.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet">
+    <title>Trade Request</title>
 </head>
 <body>
     <div class="header">
         <div class="logo">
             <img src="../img/PoCaSwap Logo.png" alt="Logo">
-            <div class="title">PoCaSwap</div>
+            <div class="title">
+                <span>PoCaSwap</span>
+            </div>
         </div>
         <div class="nav">
             <a href="#">Home</a>
@@ -50,23 +46,37 @@
             <a href="#">Pending Trades</a>
         </div>
     </div>
-    
-    <div class="main-container">
-        <h1>Pending Trades</h1>
-        <div class="trade-container">
-            <?php foreach ($trades as $trade): ?>
-                <div class="trade-card">
-                    <p><strong>User:</strong> <?= htmlspecialchars($trade['username']) ?></p>
-                    <p><strong>Photocard:</strong> <?= htmlspecialchars($trade['Photocard_Title']) ?></p>
-                    <p><strong>Offer:</strong> <?= htmlspecialchars($trade['Trade_Offer']) ?></p>
-                    <form method="post">
-                        <input type="hidden" name="trade_id" value="<?= $trade['Trade_ID'] ?>">
-                        <button type="submit" name="action" value="accept" class="accept">ACCEPT</button>
-                        <button type="submit" name="action" value="reject" class="reject">REJECT</button>
-                    </form>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
+    <h2>Pending Trades</h2>
+    <table border="1">
+        <tr>
+            <th>Product ID</th> 
+            <th>Trade Name</th>
+            <th>Description</th>
+            <th>Trade Offer</th>
+            <th>Username</th>
+            <th>Action</th>
+            <th>Status</th>
+        </tr>
+        <?php while ($trade = $result->fetch_assoc()): ?>
+        <tr>
+            <td><?= htmlspecialchars($trade['Trade_ID']) ?></td> 
+            <td><?= htmlspecialchars($trade['Trade_Name']) ?></td>
+            <td><?= htmlspecialchars($trade['Trade_Description']) ?></td>
+            <td><img src="../trades/<?= htmlspecialchars($trade['Trade_Offer']) ?>" alt="Trade Offer" width="100"></td>
+            <td><?= htmlspecialchars($trade['username']) ?></td>
+            <td>
+                <form action="pending_trades.php" method="post">
+                    <input type="hidden" name="Trade_ID" value="<?= $trade['Trade_ID'] ?>">
+                    <select name="Trade_Status">
+                        <option value="Approved">Approve</option>
+                        <option value="Rejected">Reject</option>
+                    </select>
+                    <button type="submit" name="update_trade">Update</button>
+                </form>
+            </td>
+            <td><?= htmlspecialchars($trade['Trade_Status']) ?></td>
+        </tr>
+        <?php endwhile; ?>
+    </table>
 </body>
 </html>
