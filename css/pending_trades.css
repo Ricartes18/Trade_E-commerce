@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    font-family: Changa One, sans-serif;
+    text-align: center;
+    background: #282EA0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    background: #5a21a5;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 100px;
+    padding-left: 50px;
+}
+
+.title {
+    font-family: 'Climate Crisis', sans-serif;
+    color: #FFE624;
+    font-size: 25px;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+}
+
+.nav a:last-child {
+    padding-right: 20px;
+}
+
+.nav a:hover {
+    color: #d84d96;
+    transform: translateY(-3px);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.brand-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: yellow;
+}
+
+h2 {
+    color: white;
+    font-size: 40px;
+}
+
+/* General Table Styling */
+table {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    background: #322B87; 
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.3);
+    border: 3px solid white;
+}
+
+/* Table Headers */
+th {
+    background: #d84d96; 
+    color: #56249c; 
+    padding: 16px;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border-bottom: 4px solid white;
+}
+
+/* Table Rows */
+td {
+    padding: 14px;
+    text-align: center;
+    font-size: 17px;
+    color: white;
+}
+
+/* Alternating Row Colors */
+tr:nth-child(even) {
+    background: #9080BD; 
+}
+
+tr:nth-child(odd) {
+    background: #83B7F0; 
+}
+
+/* Image Styling */
+td img {
+    width: 90px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Form & Dropdown Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+select {
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    background: #FFE624;
+    color: #5a21a5;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    color: white;
+    transition: 0.3s ease-in-out;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: #5a21a5;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Hover */
+button[name="update_trade"]:hover {
+    background: #FFE624;
+    color: #83B7F0;
+    transform: translateY(-2px);
+    box-shadow: 2px 6px 12px rgba(0, 0, 0, 0.3);
+}
