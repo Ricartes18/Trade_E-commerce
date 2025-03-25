@@ -1,0 +1,107 @@
+/* Global Styles */
+body {
+    font-family: 'Changa One', sans-serif;
+    background: linear-gradient(to bottom, #f05aa5, #5a9cf0);
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 30px auto;
+    gap: 20px;
+}
+
+/* Upload Section */
+
+.card-upload {
+    background: white;
+    color: black;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center everything */
+    gap: 10px; /* Add spacing */
+    margin-top: -20px; /* Moves box up */
+    padding: 80px 70px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    min-height: 350px; /* Adjusted height */
+}
+
+.card-preview {
+    background: white;
+    color: black;
+    display: flex;
+    text-align: left;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center everything */
+    gap: 3px; /* Add spacing */
+    margin-top: -20px; /* Moves box up */
+    padding: 84px 20px; /* Reduced padding */
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    min-height: 350px; /* Adjusted hei */
+}
+
+.upload-box {
+    background: #ff69b4;
+    padding: 80px 30px;
+    text-align: center;
+    border-radius: 10px;
+    width: 150px;
+    max-width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-upload label {
+    color:#5A21A5;
+}
+
+.card-upload input {
+    width: 100%;
+    max-width: 250px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.arrow {
+    background: transparent;
+    font-size: 2rem;
+    border: none;
+    cursor: pointer;
+    color: white;
+    padding: 50px;
+}
+
+/* Trade Button */
+.trade-btn {
+    font-family: 'Dela Gothic One', sans-serif;
+    background: white;
+    color: #5A21A5;
+    padding: 15px 50px; 
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 50px;
+    margin: 15px auto 50px auto; 
+    cursor: pointer;
+    border: none; 
+    display: block; 
+    max-width: 300px; 
+    text-align: center; 
+}
+
+.trade-btn:hover {
+    background:#5A21A5;
+    color: white;
+    transform: translateY(-3px);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
