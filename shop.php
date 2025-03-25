@@ -2,8 +2,17 @@
 include 'admin/connection.php';
 session_start();
 
+$tradable_filter = isset($_GET['tradable']) ? $_GET['tradable'] : 'all';
+
 $products = [];
-$stmt = $conp->prepare("SELECT Product_Image, Photocard_Title, Price FROM products");
+$query = "SELECT Product_Image, Photocard_Title, Price, Tradable FROM products";
+if ($tradable_filter == 'yes') {
+    $query .= " WHERE Tradable = 1";
+} elseif ($tradable_filter == 'no') {
+    $query .= " WHERE Tradable = 0";
+}
+
+$stmt = $conp->prepare($query);
 $stmt->execute();
 $result = $stmt->get_result();
 if ($result->num_rows > 0) {
@@ -25,6 +34,9 @@ if ($result->num_rows > 0) {
             padding: 20px;
             background: #f9f9f9;
         }
+        .filter-container {
+            margin-bottom: 15px;
+        }
         .container {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -41,7 +53,6 @@ if ($result->num_rows > 0) {
             padding: 10px;
             text-align: center;
             width: 180px;
-            margin: auto;
         }
         .product-card img {
             width: 100%;
@@ -63,7 +74,8 @@ if ($result->num_rows > 0) {
             color: red;
             margin-top: 20px;
         }
-        
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 grid-template-columns: repeat(2, 1fr);
@@ -78,6 +90,15 @@ if ($result->num_rows > 0) {
 </head>
 <body>
     <h1>Cedric Bading</h1>
+    
+    <div class="filter-container">
+        <label for="tradable">Filter by:</label>
+        <select id="tradable" onchange="filterProducts()">
+            <option value="all" <?= ($tradable_filter == 'all') ? 'selected' : '' ?>>All</option>
+            <option value="yes" <?= ($tradable_filter == 'yes') ? 'selected' : '' ?>>Tradable</option>
+            <option value="no" <?= ($tradable_filter == 'no') ? 'selected' : '' ?>>Non-Tradable</option>
+        </select>
+    </div>
 
     <div class="container">
         <?php if (!empty($products)): ?>
@@ -94,5 +115,13 @@ if ($result->num_rows > 0) {
         <?php endif; ?>
     </div>
 
+    <script>
+        function filterProducts() {
+            var tradable = document.getElementById('tradable').value;
+            window.location.href = "shop.php?tradable=" + tradable;
+        }
+    </script>
+
 </body>
 </html>
+
