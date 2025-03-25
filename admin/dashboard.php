@@ -41,7 +41,7 @@
             <p>What do you want to do today?</p>
         </div>
         <div class="options">
-            <a href="#" class="button view-modify">View and Modify Products</a>
+            <a href="products.php" class="button view-modify">View and Modify Products</a>
             <a href="#" class="button pending-orders">Pending Orders</a>
             <a href="#" class="button pending-trade">Pending Trade</a>
         </div>
