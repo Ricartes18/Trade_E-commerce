@@ -1,3 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap');
+
+body {
+    font-family: 'Dela Gothic One';
+    margin: 0;
+    padding: 0;
+    background-color: #000000;
+}
+
+#receipt {
+    display: block;
+    height: 800px;
+    width: 500px;
+    background-color: #FFFFFF;
+}
+
+
 .pmf{
     margin: auto;
     width: 100%;
