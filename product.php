@@ -1,7 +1,8 @@
 <?php 
     include 'admin/connection.php';
     session_start();
-    if(!isset($_GET['id'])) {
+    if(!isset($_GET['id']) || $_GET['id'] === "") {
+        header('Location: index.php');
         die('Product not found!');
     }
 
