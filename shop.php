@@ -5,7 +5,7 @@ session_start();
 $tradable_filter = isset($_GET['tradable']) ? $_GET['tradable'] : 'all';
 
 $products = [];
-$query = "SELECT Product_Image, Photocard_Title, Price, Tradable FROM products";
+$query = "SELECT Product_ID, Product_Image, Photocard_Title, Price, Tradable FROM products";
 if ($tradable_filter == 'yes') {
     $query .= " WHERE Tradable = 1";
 } elseif ($tradable_filter == 'no') {
@@ -53,12 +53,17 @@ if ($result->num_rows > 0) {
             padding: 10px;
             text-align: center;
             width: 180px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .product-card:hover {
+            transform: scale(1.05);
         }
         .product-card img {
             width: 100%;
             height: 150px;
             object-fit: cover;
             border-radius: 6px;
+            cursor: pointer;
         }
         .product-title {
             font-size: 14px;
@@ -89,7 +94,7 @@ if ($result->num_rows > 0) {
     </style>
 </head>
 <body>
-    <h1>Cedric Bading</h1>
+    <h1>PoCaSwap | Shop</h1>
     
     <div class="filter-container">
         <label for="tradable">Filter by:</label>
@@ -104,10 +109,12 @@ if ($result->num_rows > 0) {
         <?php if (!empty($products)): ?>
             <?php foreach ($products as $product): ?>
                 <div class="product-card">
-                    <img src="products/<?= !empty($product['Product_Image']) ? htmlspecialchars($product['Product_Image']) : 'default.png' ?>" 
-                         alt="Product Image">
-                    <div class="product-title"><?= htmlspecialchars($product['Photocard_Title']) ?></div>
-                    <div class="product-price">&#8369;<?= number_format($product['Price'], 2) ?></div>
+                    <a href="product.php?id=<?= htmlspecialchars($product['Product_ID']); ?>">
+                        <img src="products/<?= !empty($product['Product_Image']) ? htmlspecialchars($product['Product_Image']) : 'default.png' ?>" 
+                             alt="<?= htmlspecialchars($product['Photocard_Title']); ?>">
+                    </a>
+                    <div class="product-title"><?= htmlspecialchars($product['Photocard_Title']); ?></div>
+                    <div class="product-price">&#8369;<?= number_format($product['Price'], 2); ?></div>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -124,4 +131,3 @@ if ($result->num_rows > 0) {
 
 </body>
 </html>
-
