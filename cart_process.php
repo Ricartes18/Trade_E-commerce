@@ -48,6 +48,7 @@
                 echo "<script>alert('Exceeds Available Stock in cart');
                     window.history.back();</script>";
                 die();
+            }
         }
 
         $conp->close();
