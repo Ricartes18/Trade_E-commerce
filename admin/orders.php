@@ -82,7 +82,7 @@
             <a href="pending_trades.php">Pending Trades</a>
         </div>
         </div>
-        <h2>Pending Trades</h2>
+        <h2>Pending Orders</h2>
         <div class="status">
             <?php foreach ($status as $st) : ?>
                 <?php $id = strtolower(str_replace(' ', '-', $st)); ?> 
