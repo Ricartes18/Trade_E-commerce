@@ -24,7 +24,7 @@ $result = $conp->query("SELECT Trade_ID, Trade_Name, Trade_Description, Trade_Of
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/pending_trades.css">
+    <link rel="stylesheet" href="../css/trades_pending.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
@@ -34,16 +34,18 @@ $result = $conp->query("SELECT Trade_ID, Trade_Name, Trade_Description, Trade_Of
 <body>
     <div class="header">
         <div class="logo">
-            <img src="../img/PoCaSwap Logo.png" alt="Logo">
+        <a href="dashboard.php">
+            <img src="../images/PoCaSwap Logo.png" alt="Logo">
+        </a>
             <div class="title">
                 <span>PoCaSwap</span>
             </div>
         </div>
         <div class="nav">
-            <a href="#">Home</a>
-            <a href="#">Products</a>
-            <a href="#">Pending Orders</a>
-            <a href="#">Pending Trades</a>
+            <a href="dashboard.php">Home</a>
+            <a href="products.php">Products</a>
+            <a href="orders.php">Pending Orders</a>
+            <a href="pending_trades.php">Pending Trades</a>
         </div>
     </div>
     <h2>Pending Trades</h2>
