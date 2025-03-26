@@ -58,17 +58,18 @@
                                 }
 
                         // SQL Query
-                        $stmt = $con->prepare("SELECT password, role FROM info WHERE username = ?");
+                        $stmt = $con->prepare("SELECT user_id, password, role FROM info WHERE username = ?");
                         $stmt->bind_param("s", $username);
                         $stmt->execute();
                         $stmt->store_result();
-
+                        
                         // checks if password is correct
                         if ($stmt->num_rows > 0) {
-                            $stmt->bind_result($hashed_password, $role);
+                            $stmt->bind_result( $user_id,$hashed_password, $role);
                             $stmt->fetch();
-
+                        
                             if (password_verify($password, $hashed_password)) {
+                                $_SESSION['user_id'] = $user_id;
                                 $_SESSION['username'] = $username;
                                 $_SESSION['password'] = $password;
                                 $_SESSION['role'] = $role;
