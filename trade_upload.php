@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trade Upload</title>
     <link rel="stylesheet" href="css\trade_upload.css">
-    <link rel="stylesheet" href="css\navbar.css">
+    <link rel="stylesheet" href="css\header.css">
     <link rel="stylesheet" href="css\footer.css">
     <link href="https://fonts.googleapis.com/css2?family=Changa+One&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
 </head>
