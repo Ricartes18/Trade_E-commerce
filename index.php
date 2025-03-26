@@ -9,7 +9,6 @@
         header("Location: login.php");
         exit();
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -27,16 +26,16 @@
     <header>
         <nav class="navbar">
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Tracker</a></li>
-                <li><a href="#">Trades</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="shop.php">Shop</a></li>
+                <li><a href="order_tracker.php">Tracker</a></li>
+                <li><a href="order_tracker.php">Trades</a></li>
             </ul>
             <div class="logo">
-                <img src="images/PoCaSwap Logo.png" alt="Logo">
+                <a href="index.php"><img src="images/PoCaSwap Logo.png" alt="Logo"></a>
             </div>
             <div class="profile">
-                <a href="#"><img src="images/shopping_bag.png" alt="shopping bag"> 
+                <a href="cart.php"><img src="images/shopping_bag.png" alt="shopping bag"> 
                     <?php 
                         if(isset($_SESSION['role'])){
                             if($_SESSION['role'] === "admin" ){
@@ -45,7 +44,7 @@
                             echo "<p>".$_SESSION['username']."</p>";
                             }
                             echo "<div class='logout'>".
-                                "<form action=".$_SERVER['PHP_SELF']." method='post'>". 
+                                "<form action='logout.php' method='post'>". 
                                     "<button class='logout-btn' type='submit' name='logout'>".
                                         "<img src='images/logout_button.png' alt='Log out' class='logout-img'>".
                                     "</button>
@@ -187,11 +186,11 @@
             <div class="footer-bottom">
                 <div class="footer-left">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Tracker</a></li>
-                        <li><a href="#">Trades</a></li>
-                        <li><a href="#">Shopping Bag</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="shop.php">Shop</a></li>
+                        <li><a href="order_tracker.php">Tracker</a></li>
+                        <li><a href="order_tracker.php">Trades</a></li>
+                        <li><a href="cart.php">Shopping Bag</a></li>
                     </ul>
                 </div>
 
@@ -202,7 +201,7 @@
                 </div>
             </div>
         </div>
-        
+
     </footer>
 </body>  
 </html>
