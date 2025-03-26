@@ -6,31 +6,46 @@
 
     if(isset($_POST['add_to_cart'])) {
         $product_id = intval($_POST['product_id']);
-
-        $stmt = $conp->prepare("SELECT p.quantity, c.quantity FROM products p
-                                JOIN user.cart c ON c.product_id = p.product_id
-                                WHERE p.product_id = ?");
+        $quantity = intval($_POST['quantity']);
+        $stmt = $conp->prepare("SELECT quantity FROM products
+                                WHERE product_id = ?");
         $stmt->bind_param("i", $product_id);
         $stmt->execute();
-        $stmt->bind_result($stock, $quantity);
+        $stmt->bind_result($stock);
         $stmt->fetch();
         $stmt->close();
 
-        if ($stock > $quantity) {
-            $stmt = $con->prepare("INSERT INTO cart (user_id ,product_id, quantity) VALUES (?, ?, ?)
+        $stmt = $con->prepare("SELECT quantity FROM cart
+                                WHERE user_id = ? AND product_id = ?");
+        $stmt->bind_param("ii", $_SESSION['user_id'], $product_id);
+        $stmt->execute();
+        $stmt->bind_result($cart_quantity);
+        $stmt->fetch();
+        $stmt->close();
+
+
+        if ($cart_quantity === null) {
+            if ($quantity > $stock){
+                echo "<script>alert('No Stocks Available')</script>";
+            } else {
+                $stmt = $con->prepare("INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)");
+                $stmt->bind_param("iii", $_SESSION['user_id'], $product_id, $quantity);
+                $stmt->execute();
+                $stmt->close();
+            }
+        } else {
+
+            $new_qty = min($cart_quantity + $quantity, $stock);
+
+            if($new_qty > $cart_quantity) {
+                $stmt = $con->prepare("INSERT INTO cart (user_id ,product_id, quantity) VALUES (?, ?, ?)
                                             ON DUPLICATE KEY 
                                             UPDATE quantity = quantity + VALUES(quantity)");
-            $stmt->bind_param('iii', $user_id,$product_id, $_POST['quantity']);
-
-            if ($stmt->execute()) {
-                echo "Added to cart successfully!";
-            } else {
-                echo "Error: " . $stmt->error;
+                $stmt->bind_param('iii', $user_id,$product_id, $quantity);
+                $stmt->execute();
+                $stmt->close();
             }
-            
-            $stmt->close();
-        } else {
-            echo "<script>alert('Exceeds Available Stock in added in cart');
+            echo "<script>alert('Exceeds Available Stock in cart');
                     window.history.back();</script>";
             die();
         }
