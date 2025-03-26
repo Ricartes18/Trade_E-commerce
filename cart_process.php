@@ -6,20 +6,36 @@
 
     if(isset($_POST['add_to_cart'])) {
         $product_id = intval($_POST['product_id']);
-        $stmt = $con->prepare("INSERT INTO cart (user_id ,product_id, quantity) VALUES (?, ?, ?)
-                                        ON DUPLICATE KEY 
-                                        UPDATE quantity = quantity + VALUES(quantity)");
-        $stmt->bind_param('iii', $user_id,$product_id, $_POST['quantity']);
 
-        
-
-        if ($stmt->execute()) {
-            echo "Added to cart successfully!";
-        } else {
-            echo "Error: " . $stmt->error;
-        }
-        
+        $stmt = $conp->prepare("SELECT p.quantity, c.quantity FROM products p
+                                JOIN user.cart c ON c.product_id = p.product_id
+                                WHERE p.product_id = ?");
+        $stmt->bind_param("i", $product_id);
+        $stmt->execute();
+        $stmt->bind_result($stock, $quantity);
+        $stmt->fetch();
         $stmt->close();
+
+        if ($stock > $quantity) {
+            $stmt = $con->prepare("INSERT INTO cart (user_id ,product_id, quantity) VALUES (?, ?, ?)
+                                            ON DUPLICATE KEY 
+                                            UPDATE quantity = quantity + VALUES(quantity)");
+            $stmt->bind_param('iii', $user_id,$product_id, $_POST['quantity']);
+
+            if ($stmt->execute()) {
+                echo "Added to cart successfully!";
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+            
+            $stmt->close();
+        } else {
+            echo "<script>alert('Exceeds Available Stock in added in cart');
+                    window.history.back();</script>";
+            die();
+        }
+
+        $conp->close();
         $con->close();
     }
 
