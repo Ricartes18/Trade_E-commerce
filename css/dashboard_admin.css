@@ -55,7 +55,7 @@ body {
 
 .main-container {
     display: flex;
-    height: 74.3vh;
+    height: 74vh;
 }
 
 .welcome {
@@ -67,7 +67,7 @@ body {
     background: #d84d96;
     color: #000000;
     font-size: 30px;
-    padding: 50px;
+    padding: 40px;
     text-align: left;
 }
 
@@ -103,6 +103,11 @@ p {
     font-weight: bold;
 }
 
+.button:hover {
+    color: white;
+}
+
+
 .view-modify {
     color: #5A21A5;
 }
@@ -115,6 +120,15 @@ p {
     color: #E44093;
 }
 
-.button:hover {
-    opacity: 0.8;
+.view-modify:hover {
+    background: #5A21A5;
 }
+
+.pending-orders:hover {
+    background: #282EA0;
+}
+
+.pending-trade:hover {
+    background: #E44093;
+}
+
