@@ -153,8 +153,8 @@
                     <div class="trade-button">
                         <?php if ($row['Tradable']) : ?>
                             <form action="trade_upload.php" method="POST">
-                                <input type="hidden" name="product_id" value="<?= $row['Product_ID']; ?>">
-                                <input type="hidden" name="product_name" value="<?= $row['Photocard_Title']; ?>">
+                                <input type="hidden" name="Trade_Description" value="<?= $row['Description']; ?>">
+                                <input type="hidden" name="Trade_Name" value="<?= $row['Photocard_Title']; ?>">
                                 <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">
                                 <button class="trade-btn" type="submit" name="trade">TRADE</button>
                             </form>
