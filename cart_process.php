@@ -44,10 +44,10 @@
                 $stmt->bind_param('iii', $user_id,$product_id, $quantity);
                 $stmt->execute();
                 $stmt->close();
-            }
-            echo "<script>alert('Exceeds Available Stock in cart');
+            } else {
+                echo "<script>alert('Exceeds Available Stock in cart');
                     window.history.back();</script>";
-            die();
+                die();
         }
 
         $conp->close();
