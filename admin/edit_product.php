@@ -1,6 +1,39 @@
 <?php
 include 'connection.php';
 
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/edit_product.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet">
+    <title>Edit Product</title>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+        <a href="dashboard.php">
+            <img src="../images/PoCaSwap Logo.png" alt="Logo">
+        </a>
+            <div class="title">
+                <span>PoCaSwap</span>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="dashboard.php">Home</a>
+            <a href="products.php">Products</a>
+            <a href="orders.php">Pending Orders</a>
+            <a href="pending_trades.php">Pending Trades</a>
+        </div>
+        </div>
+
+<?php
 if (!isset($_GET['id'])) {
     die("Product not found!");
 }
@@ -80,3 +113,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <input type="file" name="image" accept=".jpg, .jpeg, .png"><br>
     <button type="submit">Update Product</button>
 </form>
+</body>
+<html>
