@@ -28,56 +28,34 @@ $products = $stmt->get_result();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-
-        table {
-            width: 80%;
-            margin: auto;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            padding: 10px;
-            border: 1px solid black;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .add-btn {
-            padding: 10px 20px;
-            background: blue;
-            color: white;
-            text-decoration: none;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-        .modal-content {
-            background-color: white;
-            padding: 20px;
-            margin: 15% auto;
-            width: 300px;
-            text-align: center;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/view_products.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet">
+    <title>View Products</title>
 </head>
 <body>
-    <h1>Cedric Pisot</h1>
-    <a href="add_product.php" class="add-btn">➕ Add Product</a>
+    <div class="header">
+        <div class="logo">
+        <a href="dashboard.php">
+            <img src="../images/PoCaSwap Logo.png" alt="Logo">
+        </a>
+            <div class="title">
+                <span>PoCaSwap</span>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="dashboard.php">Home</a>
+            <a href="products.php">Products</a>
+            <a href="orders.php">Pending Orders</a>
+            <a href="pending_trades.php">Pending Trades</a>
+        </div>
+        </div>
+    <h2>View and Modify Products</h2>
+    <div class = "container">
+        <a href="add_product.php" class="add-btn">Add Product</a>
+    </div>
 
     <div class="filter-buttons">
         <button onclick="toggleFilter('<?= $next_filter ?>')"><?= $toggle_label ?></button>
