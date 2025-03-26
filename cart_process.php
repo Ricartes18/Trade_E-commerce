@@ -99,3 +99,4 @@ if (isset($_GET['clear'])) {
 
 header("Location: product.php?id=$product_id");
 exit();
+?>
