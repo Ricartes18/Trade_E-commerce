@@ -4,7 +4,7 @@
     if($_SESSION['role'] != 'admin'){
         header("Location: ../index.php");
         exit();
-    } 
+    }
 
     $status = ['Pending', 'Ongoing', 'Delivered', 'Cancelled'];
 
@@ -58,23 +58,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet">
+    <title>Pending Orders</title>
     <link rel="stylesheet" href="../css/orders.css">
-    <style>
-        .tab-content { display: none; }
-        .active-tab { display: block; }
-    </style>
 </head>
 <body>
-
-    <div>
-        <?php 
-            foreach($status as $st) : ?>
-                <button id="<?= $st ?>-btn" onclick="showTab('<?= $st ?>')">
-                    <?= $st ?> (<?= count($order_data[$st]) ?>)
+    <div class="header">
+        <div class="logo">
+        <a href="dashboard.php">
+            <img src="../images/PoCaSwap Logo.png" alt="Logo">
+        </a>
+            <div class="title">
+                <span>PoCaSwap</span>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="dashboard.php">Home</a>
+            <a href="products.php">Products</a>
+            <a href="orders.php">Pending Orders</a>
+            <a href="pending_trades.php">Pending Trades</a>
+        </div>
+        </div>
+        <div class="status">
+            <?php foreach ($status as $st) : ?>
+                <?php $id = strtolower(str_replace(' ', '-', $st)); ?> 
+                <button id="<?= $id ?>-btn" onclick="showTab('<?= htmlspecialchars($st, ENT_QUOTES) ?>')">
+                    <?= htmlspecialchars($st) ?> (<?= count($order_data[$st] ?? []) ?>)
                 </button>
-        <?php endforeach; ?>
-    </div>
+            <?php endforeach; ?>
+        </div>
+
 
         
         <?php foreach($status as $st) : ?>
