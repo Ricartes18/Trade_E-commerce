@@ -2,6 +2,11 @@
 require 'admin/connection.php';
 session_start();
 
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 $ordersQuery = "SELECT od.orderdetails_id, od.order_Id, od.total_price, od.pickup_location, od.mode_of_payment, 
                        od.submitted_date, od.status, p.Product_Image 
                 FROM order_details od 
