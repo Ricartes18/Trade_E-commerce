@@ -236,3 +236,10 @@ button[name="orderID"] {
     transition: all 0.3s ease-in-out;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
+
+h2 {
+    text-align: center;
+    color: #6d1b7b;
+    padding: 40px 0 0 0;
+    font-size: 30px;
+}
