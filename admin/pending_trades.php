@@ -1,15 +1,23 @@
 <?php 
     session_start();
     include 'connection.php';
+
     if($_SESSION['role'] != 'admin'){
         header("Location: ../index.php");
         exit();
     }
 
     $trade_statuses = ['Pending', 'Ongoing', 'Completed', 'Declined'];
+    $trade_data = [];
 
     foreach ($trade_statuses as $status) {
-        $stmt = $conp->prepare("SELECT * FROM trade WHERE Trade_Status = ? ORDER BY Trade_ID DESC;");
+        $stmt = $conp->prepare("
+            SELECT t.*, p.Product_Image 
+            FROM trade t
+            LEFT JOIN products p ON t.Product_ID = p.Product_ID
+            WHERE t.Trade_Status = ?
+            ORDER BY t.Trade_ID DESC;
+        ");
         $stmt->bind_param('s', $status);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -29,59 +37,47 @@
     }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/trades.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet">
     <title>Pending Trades</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .status button {
-            margin: 5px;
-            padding: 10px;
-            cursor: pointer;
-            border: none;
-            background-color: #007BFF;
-            color: white;
-            border-radius: 5px;
-        }
-        .status button:hover {
-            background-color: #0056b3;
-        }
-        .tab-content {
-            display: none;
-        }
-        .active-tab {
-            display: block;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/pending_trades.css">
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+        <a href="../index.php">
+            <img src="../images/PoCaSwap Logo.png" alt="Logo">
+        </a>
+            <div class="title">
+                <span>PoCaSwap</span>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="dashboard.php">Home</a>
+            <a href="products.php">Products</a>
+            <a href="orders.php">Pending Orders</a>
+            <a href="pending_trades.php">Pending Trades</a>
+        </div>
+        </div>
 </head>
 <body>
     <h2>Pending Trades</h2>
     <div class="status">
         <?php foreach ($trade_statuses as $status) : ?>
-            <button onclick="showTab('<?= htmlspecialchars($status, ENT_QUOTES) ?>')">
+            <button id="<?= strtolower($status) ?>" onclick="showTab('<?= htmlspecialchars($status, ENT_QUOTES) ?>')">
                 <?= htmlspecialchars($status) ?> (<?= count($trade_data[$status] ?? []) ?>)
             </button>
         <?php endforeach; ?>
     </div>
+
 
     <?php foreach($trade_statuses as $status) : ?>
         <div id="<?= htmlspecialchars($status, ENT_QUOTES) ?>" class="tab-content">
@@ -93,6 +89,7 @@
                     <th>Trade ID</th>
                     <th>Username</th>
                     <th>Product ID</th>
+                    <th>Product Image</th>
                     <th>Trade Name</th>
                     <th>Description</th>
                     <th>Trade Offer</th>
@@ -104,9 +101,35 @@
                     <td><?= htmlspecialchars($trade['Trade_ID']) ?></td>
                     <td><?= htmlspecialchars($trade['username']) ?></td>
                     <td><?= htmlspecialchars($trade['Product_ID']) ?></td>
+                    
+                    <!-- Product Image -->
+                    <td>
+                        <?php
+                        $productPath = "../products/" . $trade['Product_Image'];
+                        if (!empty($trade['Product_Image']) && file_exists($productPath)) {
+                            echo '<img src="' . htmlspecialchars($productPath) . '" alt="Product Image" width="50">';
+                        } else {
+                            echo '<img src="../images/default.png" alt="No Image" width="50">';
+                        }
+                        ?>
+                    </td>
+
+
                     <td><?= htmlspecialchars($trade['Trade_Name']) ?></td>
                     <td><?= htmlspecialchars($trade['Trade_Description']) ?></td>
-                    <td><?= htmlspecialchars($trade['Trade_Offer']) ?></td>
+
+                    <!-- Trade Offer Image -->
+                    <td>
+                        <?php
+                        $offerPath = "../trades/" . $trade['Trade_Offer'];
+                        if (!empty($trade['Trade_Offer']) && file_exists($offerPath)) {
+                            echo '<img src="' . htmlspecialchars($offerPath) . '" alt="Trade Offer" width="50">';
+                        } else {
+                            echo '<img src="../images/default.png" alt="No Trade Offer" width="50">';
+                        }
+                        ?>
+                    </td>
+
                     <td>
                         <form action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
                             <select name="update">
