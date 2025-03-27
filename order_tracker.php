@@ -1,25 +1,25 @@
 <?php
-require 'admin/connection.php';
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-$ordersQuery = "SELECT od.orderdetails_id, od.order_Id, od.total_price, od.pickup_location, od.mode_of_payment, 
-                       od.submitted_date, od.status, p.Product_Image 
-                FROM order_details od 
-                JOIN products p ON od.order_Id = p.Product_ID
-                ORDER BY od.submitted_date DESC";
-$ordersResult = mysqli_query($conp, $ordersQuery);
-
-$tradesQuery = "SELECT t.trade_id, t.username, t.product_id, t.trade_name, t.trade_description, 
-                       t.trade_offer, t.trade_status, p.Product_Image 
-                FROM trade t 
-                JOIN products p ON t.product_id = p.Product_ID
-                ORDER BY t.trade_id DESC";
-$tradesResult = mysqli_query($conp, $tradesQuery);
+    require 'admin/connection.php';
+    session_start();
+    
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: login.php");
+        exit();
+    }
+    
+    $ordersQuery = "SELECT od.orderdetails_id, od.order_Id, od.total_price, od.pickup_location, od.mode_of_payment, 
+                           od.submitted_date, od.status, p.Product_Image 
+                    FROM order_details od 
+                    JOIN products p ON od.order_Id = p.Product_ID
+                    ORDER BY od.submitted_date DESC";
+    $ordersResult = mysqli_query($conp, $ordersQuery);
+    
+    $tradesQuery = "SELECT t.trade_id, t.username, t.product_id, t.trade_name, t.trade_description, 
+                           t.trade_offer, t.trade_status, p.Product_Image 
+                    FROM trade t 
+                    JOIN products p ON t.product_id = p.Product_ID
+                    ORDER BY t.trade_id DESC";
+    $tradesResult = mysqli_query($conp, $tradesQuery);
 ?>
 
 <!DOCTYPE html>
@@ -243,7 +243,7 @@ $tradesResult = mysqli_query($conp, $tradesQuery);
 function toggleTracker() {
     let ordersTable = document.getElementById("ordersTable");
     let tradesTable = document.getElementById("tradesTable");
-    let button = document.querySelector("toggleButto");
+    let button = document.querySelector("toggleButton");
 
     if (ordersTable.style.display === "none") {
         ordersTable.style.display = "table";
