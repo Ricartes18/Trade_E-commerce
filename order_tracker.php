@@ -154,21 +154,28 @@ $tradesResult = mysqli_query($conp, $tradesQuery);
 </body>
 
 <script>
-function toggleTracker() {
-    let ordersTable = document.getElementById("ordersTable");
-    let tradesTable = document.getElementById("tradesTable");
-    let button = document.querySelector("#toggleButton");
-
-    if (ordersTable.style.display === "none") {
-        ordersTable.style.display = "table";
-        tradesTable.style.display = "none";
-        button.innerText = "Show Trades";
-    } else {
-        ordersTable.style.display = "none";
-        tradesTable.style.display = "table";
-        button.innerText = "Show Orders";
+    window.onload = function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get("trade") === "true") {
+            toggleTracker(); 
+        }
+    };
+    
+    function toggleTracker() {
+        let ordersTable = document.getElementById("ordersTable");
+        let tradesTable = document.getElementById("tradesTable");
+        let button = document.querySelector("#toggleButton");
+    
+        if (ordersTable.style.display === "none") {
+            ordersTable.style.display = "table";
+            tradesTable.style.display = "none";
+            button.innerText = "Show Trades";
+        } else {
+            ordersTable.style.display = "none";
+            tradesTable.style.display = "table";
+            button.innerText = "Show Orders";
+        }
     }
-}
 </script>
 </html>
 
