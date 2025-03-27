@@ -7,10 +7,11 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$ordersQuery = "SELECT od.orderdetails_id, od.order_Id, od.total_price, od.pickup_location, od.mode_of_payment, 
-                    od.submitted_date, od.status, p.Product_Image 
-                FROM order_details od 
-                JOIN products p ON od.order_Id = p.Product_ID
+$ordersQuery = "SELECT p.Product_Image, od.Order_ID, od.total_price, od.pickup_location, od.mode_of_payment, 
+                        od.submitted_date, od.status
+                FROM orders o 
+                JOIN order_details od ON o.order_id = od.order_id
+                JOIN products p ON o.product_ID = p.Product_ID
                 ORDER BY od.submitted_date DESC";
 $ordersResult = mysqli_query($conp, $ordersQuery);
 
