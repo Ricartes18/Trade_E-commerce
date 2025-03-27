@@ -19,7 +19,9 @@
     $result = $stmt->get_result();
 
     if ($result->num_rows === 0) {
-        echo 'Product not found!';
+        echo '<script>alert("Product not found! Going back.");
+                window.history.back();</script>';
+        die();
     }
 
     $row = $result->fetch_assoc();
