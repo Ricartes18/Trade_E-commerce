@@ -1,26 +1,32 @@
 <?php
 require 'admin/connection.php';
 session_start();
+$user_id = $_SESSION['user_id'] ?? 0;
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-
-$ordersQuery = "SELECT p.Product_Image, od.Order_ID, od.total_price, od.pickup_location, od.mode_of_payment, 
-                        od.submitted_date, od.status
+$ordersQuery = "SELECT p.Product_Image, o.Order_ID, od.total_price, od.pickup_location, 
+                        od.mode_of_payment, od.submitted_date, od.status
                 FROM orders o 
                 JOIN order_details od ON o.order_id = od.order_id
                 JOIN products p ON o.product_ID = p.Product_ID
-                ORDER BY od.submitted_date DESC";
-$ordersResult = mysqli_query($conp, $ordersQuery);
+                WHERE o.user_id = ?  -- FILTER
+                ORDER BY od.submitted_date DESC, o.order_id DESC"; 
+$stmt = $conp->prepare($ordersQuery);
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$ordersResult = $stmt->get_result();
 
-$tradesQuery = "SELECT t.trade_id, t.username, t.product_id, t.trade_name, t.trade_description, t.submitted_date,
-                    t.trade_offer, t.trade_status, p.Product_Image 
+
+$tradesQuery = "SELECT t.trade_id, t.username, t.product_id, t.trade_name, 
+                        t.trade_description, t.submitted_date, t.trade_offer, 
+                        t.trade_status, p.Product_Image 
                 FROM trade t 
                 JOIN products p ON t.product_id = p.Product_ID
+                WHERE t.user_id = ?  -- FILTER
                 ORDER BY t.submitted_date DESC";
-$tradesResult = mysqli_query($conp, $tradesQuery);
+$stmt = $conp->prepare($tradesQuery);
+$stmt->bind_param("i", $user_id); 
+$stmt->execute();
+$tradesResult = $stmt->get_result();
 ?>
 
 <!DOCTYPE html>
