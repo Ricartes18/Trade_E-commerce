@@ -83,7 +83,7 @@ include 'admin/connection.php';
                     </div>
                     
                     <div class="pmfr">
-                        <input type="radio" name="pl" id="smc" value="SM Clark Main Entrance">
+                        <input type="radio" name="pl" id="smc" value="SM City Clark - Main Entrance">
                         <label for="smc">SM City Clark - Main Entrance</label>
                     </div>
                     <div class="pmfr">
