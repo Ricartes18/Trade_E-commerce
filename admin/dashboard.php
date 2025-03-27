@@ -71,7 +71,7 @@ $dashboard = new AdminDashboard();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/admin_dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
+    <link rel="shortcut icon" href="../images/PoCaSwap Logo.ico"/>
     <title>Admin Dashboard</title>
 </head>
 <body>
