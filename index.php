@@ -67,24 +67,34 @@
             <h2>Find Your Favorite Cards</h2>
             <div class="cards">
                 <div class='card'>
-                    <img src='images/Yunah.jpg' alt='Photocard'>
-                    <p>Yunah SUPER REAL ME POB M2 Debut Show</p>
+                    <a style="text-decoration: none;" href="shop.php">
+                        <img src='images/Yunah.jpg' alt='Photocard'>
+                        <p>Yunah SUPER REAL ME POB M2 Debut Show</p>
+                    </a>
                 </div>
                 <div class='card'>
-                    <img src='images/Moka.jpg' alt='Photocard'>
-                    <p>Moka SUPER REAL ME POB M2 Debut Show</p>
+                    <a style="text-decoration: none;" href="product.php?id=1">
+                        <img src='images/Moka.jpg' alt='Photocard'>
+                        <p>Moka SUPER REAL ME POB M2 Debut Show</p>
+                    </a>
                 </div>
                 <div class='card'>
-                    <img src='images/Minju.jpg' alt='Photocard'>
-                    <p>Minju SUPER REAL ME POB M2 Debut Show</p>
+                    <a style="text-decoration: none;" href="product.php?id=3">
+                        <img src='images/Minju.jpg' alt='Photocard'>
+                        <p>Minju SUPER REAL ME POB M2 Debut Show</p>
+                    </a>
                 </div>
                 <div class='card'>
-                    <img src='images/Iroha.jpg' alt='Photocard'>
-                    <p>Iroha SUPER REAL ME POB M2 Debut Show</p>
+                    <a style="text-decoration: none;" href="shop.php">
+                        <img src='images/Iroha.jpg' alt='Photocard'>
+                        <p>Iroha SUPER REAL ME POB M2 Debut Show</p>
+                    </a>
                 </div>
                 <div class='card'>
-                    <img src='images/Wonhee.jpg' alt='Photocard'>
-                    <p>Wonhee SUPER REAL ME POB M2 Debut Show</p>
+                    <a style="text-decoration: none;" href="product.php?id=2">
+                        <img src='images/Wonhee.jpg' alt='Photocard'>
+                        <p>Wonhee SUPER REAL ME POB M2 Debut Show</p>
+                    </a>
                 </div>
             </div>
         </section>
@@ -93,7 +103,7 @@
             <div class="recently-viewed-left">
                 <h2>Recently Viewed</h2>
                 <img src="images/pocaswap_recently_card.png" alt="Recently Viewed Icon" class="icon">
-                <a href="#"><button class="buy-now">Buy Now!</button></a>
+                <a href="shop.php"><button class="buy-now">Buy Now!</button></a>
             </div>
             <div class="recently-viewed-right">
 
@@ -119,7 +129,7 @@
             <div class="shop-swap-left">
                 <h2>Shop. Swap. Collect.</h2>
                 <p>Looking for the perfect photocard? PoCaSwap makes buying and trading effortless! Browse a selection, secure your favorites—all in one place. Start your collection today!</p>
-                <a href="#"><button class="shop-swap-btn">Buy Now!</button></a>
+                <a href="shop.php"><button class="shop-swap-btn">Buy Now!</button></a>
             </div>
             <div class="shop-swap-right">
                 <img src="images/about_us.jpg" alt="PoCaSwap Image">
