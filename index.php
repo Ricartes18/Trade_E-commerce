@@ -67,32 +67,32 @@
             <h2>Find Your Favorite Cards</h2>
             <div class="cards">
                 <div class='card'>
-                    <a style="text-decoration: none;" href="shop.php">
-                        <img src='images/Yunah.jpg' alt='Photocard'>
+                    <a style="text-decoration: none;" href="product.php?id=1">
+                        <img src='products/Yunah.jpg' alt='Photocard'>
                         <p>Yunah SUPER REAL ME POB M2 Debut Show</p>
                     </a>
                 </div>
                 <div class='card'>
-                    <a style="text-decoration: none;" href="product.php?id=1">
-                        <img src='images/Moka.jpg' alt='Photocard'>
+                    <a style="text-decoration: none;" href="product.php?id=2">
+                        <img src='products/Moka.jpg' alt='Photocard'>
                         <p>Moka SUPER REAL ME POB M2 Debut Show</p>
                     </a>
                 </div>
                 <div class='card'>
                     <a style="text-decoration: none;" href="product.php?id=3">
-                        <img src='images/Minju.jpg' alt='Photocard'>
+                        <img src='products/Minju.jpg' alt='Photocard'>
                         <p>Minju SUPER REAL ME POB M2 Debut Show</p>
                     </a>
                 </div>
                 <div class='card'>
-                    <a style="text-decoration: none;" href="shop.php">
-                        <img src='images/Iroha.jpg' alt='Photocard'>
+                    <a style="text-decoration: none;" href="product.php?id=4">
+                        <img src='products/Iroha.jpg' alt='Photocard'>
                         <p>Iroha SUPER REAL ME POB M2 Debut Show</p>
                     </a>
                 </div>
                 <div class='card'>
-                    <a style="text-decoration: none;" href="product.php?id=2">
-                        <img src='images/Wonhee.jpg' alt='Photocard'>
+                    <a style="text-decoration: none;" href="product.php?id=5">
+                        <img src='products/Wonhee.jpg' alt='Photocard'>
                         <p>Wonhee SUPER REAL ME POB M2 Debut Show</p>
                     </a>
                 </div>
