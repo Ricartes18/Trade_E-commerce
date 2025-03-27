@@ -104,11 +104,11 @@ $chooseCard = new Photocard("Choose a Card", "images/choose_card.png");
             <div class="footer-bottom">
                 <div class="footer-left">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Tracker</a></li>
-                        <li><a href="#">Trades</a></li>
-                        <li><a href="#">Shopping Bag</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="shop.php">Shop</a></li>
+                        <li><a href="order_tracker.php">Tracker</a></li>
+                        <li><a href="redirection.php">Trades</a></li>
+                        <li><a href="cart.php">Shopping Bag</a></li>
                     </ul>
                 </div>
 
