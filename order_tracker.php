@@ -30,97 +30,9 @@ $tradesResult = mysqli_query($conp, $tradesQuery);
     <title>Order & Trade Tracker</title>
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/order_tracker.css">
     <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
     <link href="https://fonts.googleapis.com/css2?family=Changa+One&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
-    <style>
-        
-    html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(to bottom left, #E44093, #5A21A5);
-    font-family: "Changa One";
-    }
-
-    .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-    }
-
-    h2 {
-        color: #fff;
-        font-weight: normal;
-    }
-
-    .toggle-btn {
-        font-family: 'Dela Gothic One';
-        background-color: #fff;
-        color: black;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 20px;
-        transition: transform 0.3s ease-out; 
-    }
-
-    .toggle-btn:hover {
-        background-color: #000;
-        color: #fff;
-        transform: scale(1.1);
-    }
-
-    table {
-        font-family: 'Dela Gothic One';
-        font-weight: normal;
-        color: #000;
-        width: 90%;
-        margin: auto;
-        border-collapse: separate;
-        border-spacing: 0; 
-        background: white;
-        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden; 
-    }
-
-    th, td {
-        padding: 12px;
-        border: 1px solid #ddd;
-        text-align: center;
-        vertical-align: middle;
-    }
-
-    th {
-        background: #fff;
-        color: #000
-    }
-
-    tr:nth-child(even) {
-        background: #f2f2f2;
-    }
-
-    tr:hover {
-        background: #ddd;
-    }
-
-    td img {
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        border-radius: 5px;
-    }
-
-    td:first-child {
-        text-align: left;
-        padding-left: 10px;
-    }
-    </style>
 </head>
 <body>
 <header>
@@ -129,7 +41,7 @@ $tradesResult = mysqli_query($conp, $tradesQuery);
             <li><a href="index.php">Home</a></li>
             <li><a href="shop.php">Shop</a></li>
             <li><a href="order_tracker.php">Tracker</a></li>
-            <li><a href="redirection.php">Trades</a></li>
+            <li><a href="order_tracker.php">Trades</a></li>
         </ul>
         <div class="logo">
             <a href="index.php"><img src="images/PoCaSwap Logo.png" alt="Logo"></a>
@@ -225,7 +137,7 @@ $tradesResult = mysqli_query($conp, $tradesQuery);
                         <li><a href="index.php">Home</a></li>
                         <li><a href="shop.php">Shop</a></li>
                         <li><a href="order_tracker.php">Tracker</a></li>
-                        <li><a href="redirection.php">Trades</a></li>
+                        <li><a href="order_tracker.php">Trades</a></li>
                         <li><a href="cart.php">Shopping Bag</a></li>
                     </ul>
                 </div>
@@ -259,5 +171,6 @@ function toggleTracker() {
 }
 </script>
 </html>
+
 
 
