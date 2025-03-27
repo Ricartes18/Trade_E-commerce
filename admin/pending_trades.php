@@ -82,7 +82,7 @@
     <?php foreach($trade_statuses as $status) : ?>
         <div id="<?= htmlspecialchars($status, ENT_QUOTES) ?>" class="tab-content">
             <?php if(empty($trade_data[$status])) : ?>
-                <p>No Trades Yet</p>
+                <p>No <?=$trade_data[$status]?>Trades</p>
             <?php else: ?>
             <table>
                 <tr>
