@@ -49,7 +49,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet">
     <title>Pending Trades</title>
     <link rel="stylesheet" href="../css/pending_trades.css">
-    <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
+    <link rel="shortcut icon" href="../images/PoCaSwap Logo.ico"/>
 </head>
 <body>
     <div class="header">
