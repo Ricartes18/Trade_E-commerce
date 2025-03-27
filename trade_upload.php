@@ -59,16 +59,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link rel="stylesheet" href="css\trade_upload.css">
     <link rel="stylesheet" href="css\header.css">
     <link rel="stylesheet" href="css\footer.css">
+    <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
     <link href="https://fonts.googleapis.com/css2?family=Changa+One&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation Bar -->
         <nav class="navbar">
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Tracker</a></li>
-                <li><a href="#">Trades</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="shop.php">Shop</a></li>
+                <li><a href="order_tracker.php">Tracker</a></li>
+                <li><a href="order_tracker.php">Trades</a></li>
             </ul>
             <div class="logo">
                 <img src="images\PoCaSwap Logo.png" alt="Logo">
@@ -120,18 +121,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="footer-bottom">
                 <div class="footer-left">
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Tracker</a></li>
-                        <li><a href="#">Trades</a></li>
-                        <li><a href="#">Shopping Bag</a></li>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="shop.php">Shop</a></li>
+                        <li><a href="order_tracker.php">Tracker</a></li>
+                        <li><a href="order_tracker.php">Trades</a></li>
+                        <li><a href="shopping_bag">Shopping Bag</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-right">
-                    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
-                    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                    <a href="https://instagram.com/pocaswap"><img src="images/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/pocaswap"><img src="images/facebook.png" alt="Facebook"></a>
+                    <a href="https://x.com/ssmucart"><img src="images/twitter.png" alt="Twitter"></a>
                 </div>
             </div>
         </div>
