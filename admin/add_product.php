@@ -17,7 +17,7 @@ include 'connection.php';
 <body>
     <div class="header">
         <div class="logo">
-        <a href="dashboard.php">
+        <a href="../index.php">
             <img src="../images/PoCaSwap Logo.png" alt="Logo">
         </a>
             <div class="title">
