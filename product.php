@@ -154,6 +154,7 @@
                     <div class="trade-button">
                         <?php if ($row['Tradable']) : ?>
                            <form action="trade_upload.php" method="GET">
+                                <input type="hidden" name="Product_ID" value="<?= $row['Product_ID']; ?>">
                                 <input type="hidden" name="Product_Description" value="<?= $row['Description']; ?>">
                                 <input type="hidden" name="Product_Name" value="<?= $row['Photocard_Title']; ?>">
                                 <input type="hidden" name="Product_Image" value="<?= $row['Product_Image']; ?>">
