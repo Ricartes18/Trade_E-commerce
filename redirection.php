@@ -53,10 +53,10 @@ $chooseCard = new Photocard("Choose a Card", "images/choose_card.png");
     <header>
         <nav class="navbar">
             <ul class="nav-links">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="shop.php">Shop</a></li>
-                <li><a href="order_tracker.php">Tracker</a></li>
-                <li><a href="redirection.php">Trades</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Tracker</a></li>
+                <li><a href="#">Trades</a></li>
             </ul>
             <div class="logo">
                 <a href="index.php"><img src="images/PoCaSwap Logo.png" alt="Logo"></a>
@@ -88,7 +88,7 @@ $chooseCard = new Photocard("Choose a Card", "images/choose_card.png");
     <div class="trade-container">
         <div class="container-left">
             <h2>Choose a card to trade!</h2>
-            <a href="#" class="trade-button">Check Here!</a>
+            <a href="shop.php?tradable=yes" class="trade-button">Check Here!</a>
         </div>
         <div class="container-right">
             <?php echo $chooseCard->displayCard(); ?>
@@ -104,18 +104,18 @@ $chooseCard = new Photocard("Choose a Card", "images/choose_card.png");
             <div class="footer-bottom">
                 <div class="footer-left">
                     <ul>
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="shop.php">Shop</a></li>
-                        <li><a href="order_tracker.php">Tracker</a></li>
-                        <li><a href="redirection.php">Trades</a></li>
-                        <li><a href="shopping_bag">Shopping Bag</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Tracker</a></li>
+                        <li><a href="#">Trades</a></li>
+                        <li><a href="#">Shopping Bag</a></li>
                     </ul>
                 </div>
 
                 <div class="footer-right">
-                    <a href="https://instagram.com/pocaswap"><img src="images/instagram.png" alt="Instagram"></a>
-                    <a href="https://www.facebook.com/pocaswap"><img src="images/facebook.png" alt="Facebook"></a>
-                    <a href="https://x.com/ssmucart"><img src="images/twitter.png" alt="Twitter"></a>
+                    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
                 </div>
             </div>
         </div>
