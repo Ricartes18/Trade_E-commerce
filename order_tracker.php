@@ -89,7 +89,7 @@ $tradesResult = mysqli_query($conp, $tradesQuery);
         <?php while ($row = mysqli_fetch_assoc($ordersResult)) : ?>
             <tr>
                 <td><img src="products/<?php echo htmlspecialchars($row['Product_Image']); ?>" alt="Product Image" width="50"></td>
-                <td><?php echo htmlspecialchars($row['order_Id']); ?></td>
+                <td><?php echo htmlspecialchars($row['Order_ID']); ?></td>
                 <td>₱<?php echo number_format($row['total_price'], 2); ?></td>
                 <td><?php echo htmlspecialchars($row['pickup_location']); ?></td>
                 <td><?php echo htmlspecialchars($row['mode_of_payment']); ?></td>
