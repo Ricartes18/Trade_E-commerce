@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: 'Changa One', sans-serif;
     text-align: center;
-    background: #d84d96;
+    background: linear-gradient(to top, #db98b9, #A3C5D9 70%, #8bb8d1);
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -58,6 +58,8 @@ h2 {
     margin: 50px 0 50px 0;
     color: white;
     font-size: 35px;
+    font-weight: normal;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 
 /* Add Product Button */
@@ -70,20 +72,21 @@ h2 {
 
 .add-btn {
     display: inline-block;
-    width: 120px; /* Set a fixed width */
-    text-align: center; /* Ensures text stays centered */
+    width: 120px;
+    text-align: center;
     padding: 15px 20px;
-    background-color: #2a8f3b;
+    background-color: green;
     text-transform: uppercase;
-    color: white;
+    color: #fff;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: normal;
     border-radius: 8px;
     transition: all 0.3s ease-in-out;
 }
 
 .add-btn:hover {
-    background-color: #511366;
+    background-color: #E44093;
+    color: #fff;
 }
 
 /* Filter Buttons */
@@ -103,20 +106,31 @@ h2 {
 }
 
 .filter-buttons button:first-child {
-    background-color: #6d1b7b;
-    color: white;
+    background-color: #fff;
+    color: #E44093;
+    padding: 15px 20px;
+    font-family: 'Changa One';
+    font-weight: normal;
+    font-size: 16px;
 }
 
 .filter-buttons button:first-child:hover {
-    background-color: #511366;
+    background-color: #E44093;
+    color: #fff;
 }
 
 .filter-buttons button:last-child {
-    background-color: #ccc;
+    background-color: #fff;
+    color: #E44093;
+    padding: 15px 20px;
+    font-family: 'Changa One';
+    font-weight: normal;
+    font-size: 16px;
 }
 
 .filter-buttons button:last-child:hover {
-    background-color: #bbb;
+    background-color: #E44093;
+    color: #fff;
 }
 
 /* Table Styling */
@@ -127,7 +141,7 @@ table {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     overflow: hidden;
-    color: #5CBDFB;
+    color: #000;
 }
 
 th, td {
@@ -136,22 +150,18 @@ th, td {
 }
 
 th {
-    background-color: #6d1b7b; 
+    background-color: #E44093;
     color: white;
-    font-weight: bold;
+    font-weight: normal;
 }
 
-tr:nth-child(even) {
-    background-color: #f8f1fa;
-}
-
-tr:nth-child(odd) {
-    background-color: #704b79; 
+tr {
+    background-color: #fff;
+    transition: background 0.3s ease-in-out;
 }
 
 tr:hover {
-    background-color: #e6d5ee; 
-    transition: background 0.3s ease-in-out;
+    background-color: #cccccc;
 }
 
 
