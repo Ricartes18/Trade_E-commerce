@@ -152,10 +152,10 @@
                     </div>
                     <div class="trade-button">
                         <?php if ($row['Tradable']) : ?>
-                            <form action="trade_upload.php" method="POST">
-                                <input type="hidden" name="Trade_Description" value="<?= $row['Description']; ?>">
-                                <input type="hidden" name="Trade_Name" value="<?= $row['Photocard_Title']; ?>">
-                                <input type="hidden" name="user_id" value="<?= $_SESSION['user_id']; ?>">
+                           <form action="trade_upload.php" method="GET">
+                                <input type="hidden" name="Product_Description" value="<?= $row['Description']; ?>">
+                                <input type="hidden" name="Product_Name" value="<?= $row['Photocard_Title']; ?>">
+                                <input type="hidden" name="Product_Image" value="<?= $row['Product_Image']; ?>">
                                 <button class="trade-btn" type="submit" name="trade">TRADE</button>
                             </form>
                         <?php endif; ?>
