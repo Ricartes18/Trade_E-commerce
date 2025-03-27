@@ -34,7 +34,7 @@ $result = $conp->query("SELECT Trade_ID, Trade_Name, Trade_Description, Trade_Of
 <body>
     <div class="header">
         <div class="logo">
-        <a href="dashboard.php">
+        <a href="../index.php">
             <img src="../images/PoCaSwap Logo.png" alt="Logo">
         </a>
             <div class="title">
