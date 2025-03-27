@@ -62,7 +62,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Climate+Crisis&family=Dela+Gothic+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Climate+Crisis&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
+    <link rel="shortcut icon" href="../images/PoCaSwap Logo.ico"/>
     <title>Pending Orders</title>
     <link rel="stylesheet" href="../css/orders.css">
 </head>
