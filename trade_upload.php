@@ -12,16 +12,19 @@ if (!isset($_SESSION['username'])) {
     exit();
 } 
 
-if ($_SERVER["REQUEST_METHOD"] == "GET"){
-    $Product_Name = $_GET['Product_Name'];
-    $Product_Description = $_GET['Product_Description'];
-    $Product_Image = $_GET['Product_Image'];
-}
+// Retrieve Product_ID 
+$Product_ID = isset($_GET['Product_ID']) ? $_GET['Product_ID'] : null;
+$Product_Name = isset($_GET['Product_Name']) ? $_GET['Product_Name'] : 'Unknown Product';
+$Product_Description = isset($_GET['Product_Description']) ? $_GET['Product_Description'] : 'No description available';
+$Product_Image = isset($_GET['Product_Image']) ? $_GET['Product_Image'] : 'default.jpg';
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cardName = $_POST['Trade_Name'];
     $description = $_POST['Trade_Description'];
     $username = $_SESSION['username']; 
+    $Product_ID = $_POST['Product_ID']; // Include product ID from GET request
 
     // Image Upload
     $imageName = $_FILES['Trade_Offer']['name'];
@@ -29,16 +32,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imageFolder = "trades/" . $imageName;
 
     if (move_uploaded_file($imageTmpName, $imageFolder)) {
-        // Insert Trade Offer into Database
-        $stmt = $conp->prepare("INSERT INTO trade (Trade_Name, Trade_Description, Trade_Offer, username, Trade_Status) 
-                                VALUES (?, ?, ?, ?, 'Pending')");
-        $stmt->bind_param("ssss", $cardName, $description, $imageName, $username);
+        // Insert Trade Offer into Database with Product_ID
+        $stmt = $conp->prepare("INSERT INTO trade (Product_ID, Trade_Name, Trade_Description, Trade_Offer, username, Trade_Status) 
+                                VALUES (?, ?, ?, ?, ?, 'Pending')");
+        $stmt->bind_param("issss", $Product_ID, $cardName, $description, $imageName, $username);
 
         if ($stmt->execute()) {
-            // Retrieve the last inserted product ID
-            $tradeId = $stmt->insert_id;
-
-            echo "<script>alert('Trade submitted successfully! Product ID: $tradeId'); window.location='trade_upload.php';</script>";
+            echo "<script>alert('Trade submitted successfully!'); window.location='trade_upload.php';</script>";
         } else {
             echo "Error: " . $stmt->error;
         }
@@ -47,6 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "Failed to upload image.";
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -90,6 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     <label>Upload Image:</label>
                     <input type="file" name="Trade_Offer" accept="image/*" required><br>
+                    <input type="hidden" name="Product_ID" value="<?= $Product_ID ?>">
 
                     <button type="submit" class="trade-btn">Trade!</button>
                 </form>
