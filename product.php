@@ -3,7 +3,8 @@
     include 'admin/connection.php';
     session_start();
     if(!isset($_GET['id'])) {
-        die('Product not found!');
+        header("Location: shop.php");
+        die();
     }
 
     if (!isset($_SESSION['username'])) {
