@@ -2,7 +2,7 @@
 include 'admin/connection.php'; 
 session_start();
 
-if (empty($_GET)) {
+if ($_SERVER["REQUEST_METHOD"] === "GET" && empty($_GET)) {
     header("Location: index.php");
     exit();
 } 
