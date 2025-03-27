@@ -199,7 +199,7 @@ $tradesResult = mysqli_query($conp, $tradesQuery);
         </tr>
         <?php while ($row = mysqli_fetch_assoc($tradesResult)) : ?>
             <tr>
-                <td><img src="uploads/<?php echo htmlspecialchars($row['Product_Image']); ?>" alt="Product Image" width="50"></td>
+                <td><img src="trades/<?php echo htmlspecialchars($row['Product_Image']); ?>" alt="Product Image" width="50"></td>
                 <td><?php echo htmlspecialchars($row['trade_id']); ?></td>
                 <td><?php echo htmlspecialchars($row['username']); ?></td>
                 <td><?php echo htmlspecialchars($row['trade_name']); ?></td>
