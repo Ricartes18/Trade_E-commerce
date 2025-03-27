@@ -26,39 +26,126 @@ include 'admin/connection.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
     <title>Shopping Cart</title>
 </head>
 <body>
-    <h1>Shopping Bading</h1>
-    <?php if($_SESSION['cart'] == 'has_items'): ?>
-        <form id="checkoutForm" action="checkout.php" method="POST">
-            <ul>
-                <?php while($row = $result->fetch_assoc()) { ?>
-                    <li>
-                        <input type="checkbox"  name="checkout_items[]" value="<?= $row['Product_ID']; ?>" 
-                        data-price="<?= floatval($row['Price']); ?>"
-                        data-quantity="<?= intval($row['quantity']); ?>" onchange="updateTotal()">
-                        <img src="products/<?= $row['Product_Image']; ?>" width="50">
-                        
-                        <?= $row['Photocard_Title']; ?> - &#8369; <?= $row['Price']; ?>
-                        <br> Quantity: <?= $row['quantity']; ?>
-                        <a href="cart_process.php?add=<?= $row['Product_ID']; ?>&qty=<?= $row['quantity']; ?>">➕</a>
-                        <a href="cart_process.php?minus=<?= $row['Product_ID']; ?>">➖</a>
-                        <a href="cart_process.php?remove=<?= $row['Product_ID']; ?>">❌ Remove</a>
-                    </li>
-                <?php } ?>
+<header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Tracker</a></li>
+                <li><a href="#">Trades</a></li>
             </ul>
-            <p><strong>Total: <span id="totalPrice">₱ 0.00</span></strong></p>
+            <div class="logo">
+                <a href="index.php"><img src="images/PoCaSwap Logo.png" alt="Logo"></a>
+            </div>
+            <div class="profile">
+                <a href="cart.php"><img src="images/shopping_bag.png" alt="shopping bag"> 
+                    <?php 
+                        if(isset($_SESSION['role'])){
+                            if($_SESSION['role'] === "admin" ){
+                                echo "<a href='admin/dashboard.php'>Dashboard</a>";
+                            } if(($_SESSION['role']) === "user"){
+                            echo "<p>".$_SESSION['username']."</p>";
+                            }
+                            echo "<div class='logout'>".
+                                "<form action='logout.php' method='post'>".  
+                                    "<button class='logout-btn' type='submit' name='logout'>".
+                                        "<img src='images/logout_button.png' alt='Log out' class='logout-img'>".
+                                    "</button>
+                                </form>
+                            </div>";
+                        } else {
+                            echo "<a href='login.php'>Login</a> <a>|</a> <a href='sign_up.php'>Sign Up</a>";
+                        }
+                    ?>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section class="cart-section">
+        <?php if($_SESSION['cart'] == 'has_items'): ?>
+        <form id="checkoutForm" action="checkout.php" method="POST">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while($row = $result->fetch_assoc()) { ?>
+                        <tr>
+                            <td>
+                                <input type="checkbox" name="checkout_items[]" value="<?= $row['Product_ID']; ?>" 
+                                data-price="<?= floatval($row['Price']); ?>"
+                                data-quantity="<?= intval($row['quantity']); ?>" onchange="updateTotal()">
+                                <img src="products/<?= $row['Product_Image']; ?>" width="50">
+                                <?= $row['Photocard_Title']; ?>
+                            </td>
+                            <td>PHP <?= $row['Price']; ?></td>
+                            <td>
+                                <div class="quantity-container">
+                                    <a href="cart_process.php?minus=<?= $row['Product_ID']; ?>">-</a>
+                                    <span><?= $row['quantity']; ?></span>
+                                    <a href="cart_process.php?add=<?= $row['Product_ID']; ?>&qty=<?= $row['quantity']; ?>">+</a>
+                                </div>
+                            </td>
+                            <td>
+                                <a class="delete-btn" href="cart_process.php?remove=<?= $row['Product_ID']; ?>">Delete</a>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+            <div class="total-container">
+                <p class="total-price">Total: <span id="totalPrice">PHP 0.00</span></p>
+            </div>
             <input type="hidden" name="total_price" id="totalPriceInput" value="0">
-        <button type="submit" name="cart_checkout" id="checkoutBtn">Proceed to Checkout</button>
-        <br><br>
+            <button type="submit" name="cart_checkout" id="checkoutBtn" class="checkout-btn">Checkout</button>
+            <a href="cart_process.php?clear=true" class="clear-cart">Clear Cart</a>
         </form>
+        <div class="cart-empty">
+            <?php else: ?>
+            <p>Your cart is empty.</p>
+            <?php endif; ?>
+        </div>
+            
+    </section>
+    
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="footer-center">
+                <h2>PoCaSwap</h2>
+                <p>Shop. Swap. Collect</p>
+            </div>
 
-        
-        <a href="cart_process.php?clear=true" style="color: red;">🗑️ Clear Cart</a>
-    <?php else: ?>
-        <p>Your cart is empty.</p>
-    <?php endif; ?>
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Shop</a></li>
+                        <li><a href="#">Tracker</a></li>
+                        <li><a href="#">Trades</a></li>
+                        <li><a href="#">Shopping Bag</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-right">
+                    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
+                    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
+                    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 <script>
@@ -94,7 +181,7 @@ include 'admin/connection.php';
                 }
             });
 
-            totalPriceElement.textContent = `₱ ${total.toFixed(2)}`; 
+            totalPriceElement.textContent = `PHP ${total.toFixed(2)}`; 
             document.getElementById('totalPriceInput').value = total; 
             checkoutBtn.disabled = total === 0; 
         }
