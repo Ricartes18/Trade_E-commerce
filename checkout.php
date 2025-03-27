@@ -22,16 +22,16 @@ include 'admin/connection.php';
         <link rel="stylesheet" href="css/checkout.css">
         <link rel="stylesheet" href="css/header.css">
         <link rel="stylesheet" href="css/footer.css">
-
+        <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
     </head>
     <body>
         <header>
             <nav class="navbar">
                 <ul class="nav-links">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Shop</a></li>
-                    <li><a href="#">Tracker</a></li>
-                    <li><a href="#">Trades</a></li>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="shop.php">Shop</a></li>
+                    <li><a href="order_tracker.php">Tracker</a></li>
+                    <li><a href="order_tracker.php">Trades</a></li>
                 </ul>
                 <div class="logo">
                     <img src="images/PoCaSwap Logo.png" alt="Logo">
@@ -145,31 +145,30 @@ include 'admin/connection.php';
             <a href="cart.php" class="back">< Back to Cart</a>
         </div>
         <footer class="footer">
-        <div class="footer-wrapper">
-            <div class="footer-center">
-                <h2>PoCaSwap</h2>
-                <p>Shop. Swap. Collect</p>
+            <div class="footer-wrapper">
+                <div class="footer-center">
+                    <h2>PoCaSwap</h2>
+                    <p>Shop. Swap. Collect</p>
+                </div>
+    
+                <div class="footer-bottom">
+                    <div class="footer-left">
+                        <ul>
+                            <li><a href="index.php">Home</a></li>
+                            <li><a href="shop.php">Shop</a></li>
+                            <li><a href="order_tracker.php">Tracker</a></li>
+                            <li><a href="order_tracker.php">Trades</a></li>
+                            <li><a href="shopping_bag">Shopping Bag</a></li>
+                        </ul>
+                    </div>
+    
+                    <div class="footer-right">
+                        <a href="https://instagram.com/pocaswap"><img src="images/instagram.png" alt="Instagram"></a>
+                        <a href="https://www.facebook.com/pocaswap"><img src="images/facebook.png" alt="Facebook"></a>
+                        <a href="https://x.com/ssmucart"><img src="images/twitter.png" alt="Twitter"></a>
+                    </div>
+                </div>
             </div>
-
-            <div class="footer-bottom">
-                <div class="footer-left">
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Shop</a></li>
-                        <li><a href="#">Tracker</a></li>
-                        <li><a href="#">Trades</a></li>
-                        <li><a href="#">Shopping Bag</a></li>
-                    </ul>
-                </div>
-
-                <div class="footer-right">
-                    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
-                    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
-                </div>
-                </div>
-        </div>
-        
         </footer>
     </body>
 </html>        
