@@ -1,4 +1,22 @@
 <?php
+    session_start();
+    include 'admin/connection.php';
+
+    if (isset($_SESSION['user_id'])){
+        $stmt = $conp->prepare("SELECT username FROM trade 
+                                WHERE username = ?");
+        $stmt->bind_param('s', $_SESSION['username']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if ($result->num_rows > 0){
+            header("Location: order_tracker.php?trade=true");
+            exit();
+        }
+    } else {
+        header('Location: login.php');
+        exit();
+    }
 
 class Photocard {
     public $title;
