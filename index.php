@@ -29,7 +29,7 @@
                 <li><a href="index.php">Home</a></li>
                 <li><a href="shop.php">Shop</a></li>
                 <li><a href="order_tracker.php">Tracker</a></li>
-                <li><a href="order_tracker.php">Trades</a></li>
+                <li><a href="redirection.php">Trades</a></li>
             </ul>
             <div class="logo">
                 <a href="index.php"><img src="images/PoCaSwap Logo.png" alt="Logo"></a>
@@ -138,7 +138,7 @@
         <section class="testimonials">
             <div class="testimonial">
                 <h3>Testimonial 1</h3>
-                <p>“I love this che”</p>
+                <p>“This website is super useful in my photocard collection journey!”</p>
                 <img src="images/testimonial1.png" alt="first testimonial">
             </div>
             <div class="testimonial">
@@ -199,7 +199,7 @@
                         <li><a href="index.php">Home</a></li>
                         <li><a href="shop.php">Shop</a></li>
                         <li><a href="order_tracker.php">Tracker</a></li>
-                        <li><a href="order_tracker.php">Trades</a></li>
+                        <li><a href="redirection.php">Trades</a></li>
                         <li><a href="cart.php">Shopping Bag</a></li>
                     </ul>
                 </div>
