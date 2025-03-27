@@ -25,102 +25,111 @@ if ($result->num_rows > 0) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PoCaSwap | Shop</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 20px;
-            background: #f9f9f9;
-        }
-        .filter-container {
-            margin-bottom: 15px;
-        }
-        .container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            max-width: 900px;
-            margin: auto;
-            justify-content: center;
-            align-items: center;
-        }
-        .product-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-            text-align: center;
-            width: 180px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .product-card:hover {
-            transform: scale(1.05);
-        }
-        .product-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .product-title {
-            font-size: 14px;
-            font-weight: bold;
-            margin: 5px 0;
-        }
-        .product-price {
-            color: green;
-            font-size: 13px;
-        }
-        .no-products {
-            font-size: 18px;
-            color: red;
-            margin-top: 20px;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-        @media (max-width: 500px) {
-            .container {
-                grid-template-columns: repeat(1, 1fr);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="css/shop.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="shortcut icon" href="images/PoCaSwap Logo.ico"/>
+    <title>Shop</title>
 </head>
 <body>
-    <h1>PoCaSwap | Shop</h1>
-    
-    <div class="filter-container">
-        <label for="tradable">Filter by:</label>
-        <select id="tradable" onchange="filterProducts()">
-            <option value="all" <?= ($tradable_filter == 'all') ? 'selected' : '' ?>>All</option>
-            <option value="yes" <?= ($tradable_filter == 'yes') ? 'selected' : '' ?>>Tradable</option>
-            <option value="no" <?= ($tradable_filter == 'no') ? 'selected' : '' ?>>Non-Tradable</option>
-        </select>
-    </div>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="shop.php">Shop</a></li>
+                <li><a href="order_tracker.php">Tracker</a></li>
+                <li><a href="redirection.php">Trades</a></li>
+            </ul>
+            <div class="logo">
+                <a href="index.php"><img src="images/PoCaSwap Logo.png" alt="Logo"></a>
+            </div>
+            <div class="profile">
+                <a href="cart.php"><img src="images/shopping_bag.png" alt="shopping bag"> 
+                    <?php 
+                        if(isset($_SESSION['role'])){
+                            if($_SESSION['role'] === "admin" ){
+                                echo "<a href='admin/dashboard.php'>Dashboard</a>";
+                            } if(($_SESSION['role']) === "user"){
+                            echo "<p>".$_SESSION['username']."</p>";
+                            }
+                            echo "<div class='logout'>".
+                                "<form action='logout.php' method='post'>". 
+                                    "<button class='logout-btn' type='submit' name='logout'>".
+                                        "<img src='images/logout_button.png' alt='Log out' class='logout-img'>".
+                                    "</button>
+                                </form>
+                            </div>";
+                        } else {
+                            echo "<a href='login.php'>Login</a> <a>|</a> <a href='sign_up.php'>Sign Up</a>";
+                        }
+                    ?>
+                </a>
+            </div>
+        </nav>
+    </header>
+    <section class="products-section">
+        
+        <div class="hero-container">
+            <img src="images/shop.jpg" alt="Hero Image" class="hero-image">
+        </div>
 
-    <div class="container">
-        <?php if (!empty($products)): ?>
-            <?php foreach ($products as $product): ?>
-                <div class="product-card">
-                    <a href="product.php?id=<?= htmlspecialchars($product['Product_ID']); ?>">
-                        <img src="products/<?= !empty($product['Product_Image']) ? htmlspecialchars($product['Product_Image']) : 'default.png' ?>" 
-                             alt="<?= htmlspecialchars($product['Photocard_Title']); ?>">
-                    </a>
-                    <div class="product-title"><?= htmlspecialchars($product['Photocard_Title']); ?></div>
-                    <div class="product-price">&#8369;<?= number_format($product['Price'], 2); ?></div>
+        <div class="products-display">
+            <div class="filter-container">
+                <label for="tradable">Filter by:</label>
+                <select id="tradable" onchange="filterProducts()">
+                    <option value="all" <?= ($tradable_filter == 'all') ? 'selected' : '' ?>>All</option>
+                    <option value="yes" <?= ($tradable_filter == 'yes') ? 'selected' : '' ?>>Tradable</option>
+                    <option value="no" <?= ($tradable_filter == 'no') ? 'selected' : '' ?>>Non-Tradable</option>
+                </select>
+            </div>
+
+            <div class="container">
+                <?php if (!empty($products)): ?>
+                    <?php foreach ($products as $product): ?>
+                        <div class="product-card">
+                            <a href="product.php?id=<?= htmlspecialchars($product['Product_ID']); ?>">
+                                <div class="product-image-container">
+                                    <img src="products/<?= !empty($product['Product_Image']) ? htmlspecialchars($product['Product_Image']) : 'default.png' ?>" 
+                                        alt="<?= htmlspecialchars($product['Photocard_Title']); ?>">
+                                </div>
+                            </a>
+                            <div class="product-title"><?= htmlspecialchars($product['Photocard_Title']); ?></div>
+                            <div class="product-price">PHP <?= number_format($product['Price'], 2); ?></div>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <p class="no-products">No products available</p>
+                <?php endif; ?>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-wrapper">
+            <div class="footer-center">
+                <h2>PoCaSwap</h2>
+                <p>Shop. Swap. Collect</p>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="footer-left">
+                    <ul>
+                        <li><a href="index.php">Home</a></li>
+                        <li><a href="shop.php">Shop</a></li>
+                        <li><a href="order_tracker.php">Tracker</a></li>
+                        <li><a href="redirection.php">Trades</a></li>
+                        <li><a href="shopping_bag">Shopping Bag</a></li>
+                    </ul>
                 </div>
-            <?php endforeach; ?>
-        <?php else: ?>
-            <p class="no-products">No products available</p>
-        <?php endif; ?>
-    </div>
+
+                <div class="footer-right">
+                    <a href="https://instagram.com/pocaswap"><img src="images/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/pocaswap"><img src="images/facebook.png" alt="Facebook"></a>
+                    <a href="https://x.com/ssmucart"><img src="images/twitter.png" alt="Twitter"></a>
+                </div>
+            </div>
+        </div>
+    </footer>        
 
     <script>
         function filterProducts() {
@@ -128,6 +137,5 @@ if ($result->num_rows > 0) {
             window.location.href = "shop.php?tradable=" + tradable;
         }
     </script>
-
 </body>
 </html>
