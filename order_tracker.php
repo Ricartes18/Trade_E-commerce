@@ -2,7 +2,7 @@
 require 'admin/connection.php';
 session_start();
 $user_id = $_SESSION['user_id'] ?? 0;
-
+$username = $_SESSION['username'] ?? 0;
 $ordersQuery = "SELECT p.Product_Image, o.Order_ID, od.total_price, od.pickup_location, 
                         od.mode_of_payment, od.submitted_date, od.status
                 FROM orders o 
@@ -21,10 +21,10 @@ $tradesQuery = "SELECT t.trade_id, t.username, t.product_id, t.trade_name,
                         t.trade_status, p.Product_Image 
                 FROM trade t 
                 JOIN products p ON t.product_id = p.Product_ID
-                WHERE t.user_id = ?  -- FILTER
+                WHERE t.username = ?  -- FILTER
                 ORDER BY t.submitted_date DESC";
 $stmt = $conp->prepare($tradesQuery);
-$stmt->bind_param("i", $user_id); 
+$stmt->bind_param("s", $username); 
 $stmt->execute();
 $tradesResult = $stmt->get_result();
 ?>
