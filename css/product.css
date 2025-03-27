@@ -9,8 +9,8 @@ body {
 }
 
 .photocard-section {
-    max-width: 2000px;
-    height: 700px;
+    width: 100vw;
+    height: 100vh;
     background: linear-gradient(to bottom, #5CBDFB, #E44093);
     display: flex;
     align-items: center;
