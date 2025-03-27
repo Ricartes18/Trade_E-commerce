@@ -31,7 +31,7 @@ include 'admin/connection.php';
                     <li><a href="index.php">Home</a></li>
                     <li><a href="shop.php">Shop</a></li>
                     <li><a href="order_tracker.php">Tracker</a></li>
-                    <li><a href="order_tracker.php">Trades</a></li>
+                    <li><a href="redirection.php">Trades</a></li>
                 </ul>
                 <div class="logo">
                     <img src="images/PoCaSwap Logo.png" alt="Logo">
@@ -157,7 +157,7 @@ include 'admin/connection.php';
                             <li><a href="index.php">Home</a></li>
                             <li><a href="shop.php">Shop</a></li>
                             <li><a href="order_tracker.php">Tracker</a></li>
-                            <li><a href="order_tracker.php">Trades</a></li>
+                            <li><a href="redirection.php">Trades</a></li>
                             <li><a href="shopping_bag">Shopping Bag</a></li>
                         </ul>
                     </div>
