@@ -205,9 +205,9 @@
                 </div>
 
                 <div class="footer-right">
-                    <a href="#"><img src="images/instagram.png" alt="Instagram"></a>
-                    <a href="#"><img src="images/facebook.png" alt="Facebook"></a>
-                    <a href="#"><img src="images/twitter.png" alt="Twitter"></a>
+                    <a href="https://instagram.com/pocaswap"><img src="images/instagram.png" alt="Instagram"></a>
+                    <a href="https://www.facebook.com/pocaswap"><img src="images/facebook.png" alt="Facebook"></a>
+                    <a href="https://x.com/ssmucart"><img src="images/twitter.png" alt="Twitter"></a>
                 </div>
             </div>
         </div>
