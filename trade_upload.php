@@ -2,6 +2,12 @@
 include 'admin/connection.php'; 
 session_start();
 
+if ($_SERVER["REQUEST_METHOD"] == "GET"){
+    $Product_Name = $_GET['Product_Name'];
+    $Product_Description = $_GET['Product_Description'];
+    $Product_Image = $_GET['Product_Image'];
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $cardName = $_POST['Trade_Name'];
     $description = $_POST['Trade_Description'];
@@ -83,9 +89,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="trade-request">
                 <h2>Product You Want</h2>
                 <div class="requested-product">
-                    <img src="images/sample-product.jpg" alt="Requested Product">
-                    <p>Example Product Name</p>
-                    <p>Example product description goes here.</p>
+                    <img src="products/<?= $Product_Image ?>" alt="<?=$Product_Name?>">
+                    <p><?=$Product_Name?></p>
+                    <p><?=$Product_Description?></p>
                 </div>
             </div>
         </div>
