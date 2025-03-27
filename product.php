@@ -36,8 +36,8 @@
     // show it in the first
     array_unshift($recently_viewed, $product_id);
 
-    //limits the recently viewed to 5
-    $recently_viewed = array_slice($recently_viewed, 0, 5);
+    //limits the recently viewed to 4
+    $recently_viewed = array_slice($recently_viewed, 0, 4);
 
     // store the new recently viewed in cookie
     setcookie('recently_viewed', json_encode($recently_viewed), time() + (86400 * 7), "/"); // Expires in 7 days
